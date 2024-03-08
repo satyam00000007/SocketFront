@@ -8,19 +8,22 @@ import { Socket } from 'ngx-socket-io';
 })
 export class AppComponent {
   title = 'front';
-  data:any = {};
+  data:any = {
+    sale: 0,
+    revenue:0,
+    customer:0
+  };
   Product:any = {
     sale: 0,
     revenue:0,
     customer:0
-  }
+  };
   
   constructor(private socket: Socket){
     
   }
 
   ngOnInit(): void {
-    this.data = this.Product
     this.socket.fromEvent('new-email').subscribe((email:any) => {
       console.log(email)
     })
@@ -31,8 +34,11 @@ export class AppComponent {
     })
   }
 
-  sendMessage(){
-    console.log("clicked")
+  sendMessage(event:any){
+    let nonInputValues = ['e', 'E', '+', '-'].includes(event.key);
+    if(nonInputValues){
+      event.preventDefault();
+    }
     let clientData = {sender :"client", clientData : this.Product};
     this.socket.emit("client-event", clientData);
   }
