@@ -1,23 +1,19 @@
 <main class="container mt-5">
 
   <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1>Socket App</h1>
     <nav>
       <ol class="breadcrumb">
-        <!-- <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li> -->
       </ol>
     </nav>
-  </div><!-- End Page Title -->
+  </div>
 
   <section class="section dashboard">
     <div class="row">
 
-      <!-- Left side columns -->
       <div class="col-lg-12">
         <div class="row">
 
-          <!-- Sales Card -->
           <div class="col-xxl-4 col-md-6">
             <div class="card info-card sales-card">
 
@@ -37,9 +33,8 @@
               </div>
 
             </div>
-          </div><!-- End Sales Card -->
+          </div>
 
-          <!-- Revenue Card -->
           <div class="col-xxl-4 col-md-6">
             <div class="card info-card revenue-card">
 
@@ -59,9 +54,9 @@
               </div>
 
             </div>
-          </div><!-- End Revenue Card -->
+          </div>
 
-          <!-- Customers Card -->
+         
           <div class="col-xxl-4 col-xl-12">
 
             <div class="card info-card customers-card">
@@ -83,51 +78,64 @@
               </div>
             </div>
 
-          </div><!-- End Customers Card -->
+          </div>
 
-          <!-- Reports -->
           <div class="col-12">
             <div class="card">
 
               <div class="card-body">
                 <h5 class="card-title">Reports <span>/Today</span></h5>
 
-                <!-- Line Chart -->
                 <div id="reportsChart mt-3">
                   <form class="col-12">
                     <div class="row px-1 d-flex justify-content-center align-items-center">
                       <div class="control-field col-md-4 d-flex justify-content-center align-items-center">
                         <mat-form-field class="example-full-width" appearance="outline">
                           <mat-label>Sale</mat-label>
-                          <input matInput type="number" name="sale" [(ngModel)]="Product.sale" (keydown)="sendMessage($event)">
+                          <input matInput type="number" name="sale" [(ngModel)]="Product.sale" (ngModelChange)="sendMessage()" (keydown)="handleNonNumber($event)">
                         </mat-form-field>
                       </div>
                       <div class="control-field col-md-4 d-flex justify-content-center align-items-center">
                         <mat-form-field class="example-full-width" appearance="outline">
                           <mat-label>Revenue</mat-label>
-                          <input matInput type="number" name="revenue" [(ngModel)]="Product.revenue" (keydown)="sendMessage($event)">
+                          <input matInput type="number" name="revenue" [(ngModel)]="Product.revenue" (ngModelChange)="sendMessage()" (keydown)="handleNonNumber($event)">
                         </mat-form-field>
                       </div>
                       <div class="control-field col-md-4 d-flex justify-content-center align-items-center">
                         <mat-form-field class="example-full-width" appearance="outline">
                           <mat-label>Customer</mat-label>
-                          <input matInput type="number" name="customer" [(ngModel)]="Product.customer" (keydown)="sendMessage($event)">
+                          <input matInput type="number" name="customer" [(ngModel)]="Product.customer" (ngModelChange)="sendMessage()" (keydown)="handleNonNumber($event)">
                         </mat-form-field>
                       </div>
                     </div>
                   </form>
                 </div>
-                <!-- End Line Chart -->
 
               </div>
 
             </div>
-          </div><!-- End Reports -->
+          </div>
 
         </div>
-      </div><!-- End Left side columns -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Bar Chart</h5>
+                <canvas baseChart
+                      [data]="barChartData"
+                      [options]="barChartOptions"
+                      >
+                </canvas>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </section>
 
-</main><!-- End #main -->
+</main>

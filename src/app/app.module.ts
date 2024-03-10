@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatDialogModule,
     MatInputModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
